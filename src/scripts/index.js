@@ -14,6 +14,7 @@ function draw() {
     text('tap to start', width / 2, 20);
 
     micLevel = mic.getLevel();
+    console.log(micLevel);
     let y = height - micLevel * height;
     ellipse(width / 2, y, 10, 10);
 }

@@ -11,14 +11,43 @@
                 margin: 0;
             }
         </style>
-        <script src="scripts/p5/p5.js"></script>
-        <script src="scripts/p5/addons/p5.sound.js"></script>
-        <script src="scripts/index.js"></script>
+        <script src="src/scripts/p5/p5.js"></script>
+        <script src="src/scripts/p5/addons/p5.sound.js"></script>
+        <!--<script src="src/scripts/index.js"></script>-->
     </head>
 
     <body>
         <main>
+            <img id="img" src="src/images/RumiNoTalkfixed.gif" />
         </main>
     </body>
+
+    <script>
+        let mic;
+
+        function setup() {
+            userStartAudio();
+            mic = new p5.AudioIn();
+            mic.start();
+        }
+
+        function draw() {
+            var imgToReplace = document.getElementById("img");
+            var imgSrc = imgToReplace.getAttribute("src");
+            micLevel = mic.getLevel() * 100;
+            if (micLevel > 1) {
+                setTimeout(function(){
+                    console.log(micLevel);
+                    imgSrc = "src/images/rumitalkfixed.gif"+"?a="+Math.random();
+                    imgToReplace.setAttribute("src", imgSrc);
+                },720);
+            } else {
+                setTimeout(function(){
+                    imgSrc = "src/images/RumiNoTalkfixed.gif"+"?a="+Math.random();
+                    imgToReplace.setAttribute("src", imgSrc);
+                },4400);
+            }
+        }
+    </script>
 
 </html>
